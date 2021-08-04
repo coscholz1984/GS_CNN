@@ -19,7 +19,7 @@ For an in-depth explanation of the system and results, see the following publica
 
 To cite this work, please cite the above publication, or, in case of specific code, please cite
 	
-	C. Scholz and S. Scholz, https://github.com/coscholz1984/PatternLearning
+	C. Scholz and S. Scholz, https://github.com/coscholz1984/GS_CNN
 
 ---
 
