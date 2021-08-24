@@ -88,7 +88,8 @@ model = gst.define_2D_cnn_architecture((128, 128, 3), labels_train_int.max() + 1
 
 model.compile(
     optimizer="adam",
-    loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=False),
+    # Note that we need to set from_logits=True, because softmax is not explicitly set in last layer
+    loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
     metrics=["sparse_categorical_accuracy"],
 )
 # %% Train network
