@@ -74,11 +74,17 @@ history = pickle.load(open("./" + IMPORT_PATH_KERAS + "/trainHistoryDict", "rb")
 FILEPREFIX = "Dataset_2D_"
 if IMPORT_PATH_KERAS == "model_CNN_3D":
     FILEPREFIX = "Dataset_3D_"
-dataset_train = np.array(pickle.load(open(FILEPREFIX + "train.p", "rb")))
-dataset_val = np.array(pickle.load(open(FILEPREFIX + "val.p", "rb")))
+if IMPORT_PATH_KERAS == "model_CNN_2D_2nd":
+    dataset_train = np.array(pickle.load(open(FILEPREFIX + "train2.p", "rb")))
+    dataset_val = np.array(pickle.load(open(FILEPREFIX + "val2.p", "rb")))
+    labels_val = pickle.load(open(FILEPREFIX + "val2_label.p", "rb"))
+    labels_train = pickle.load(open(FILEPREFIX + "train2_label.p", "rb"))
+else:        
+    dataset_train = np.array(pickle.load(open(FILEPREFIX + "train.p", "rb")))
+    dataset_val = np.array(pickle.load(open(FILEPREFIX + "val.p", "rb")))
+    labels_val = pickle.load(open(FILEPREFIX + "val_label.p", "rb"))
+    labels_train = pickle.load(open(FILEPREFIX + "train_label.p", "rb"))
 dataset_test = np.array(pickle.load(open(FILEPREFIX + "test.p", "rb")))
-labels_train = pickle.load(open(FILEPREFIX + "train_label.p", "rb"))
-labels_val = pickle.load(open(FILEPREFIX + "val_label.p", "rb"))
 labels_test = pickle.load(open(FILEPREFIX + "test_label.p", "rb"))
 
 if NORMALIZE_DATA:
@@ -100,6 +106,12 @@ if IMPORT_PATH_KERAS == "model_CNN_3D":
 labels_train_int = gst.intLabels(labels_train)
 labels_val_int = gst.intLabels(labels_val)
 labels_test_int = gst.intLabels(labels_test)
+
+# Hack label index for l and h patterns [13,14] -> [14,15]
+ticks_test = gst.get_greek_labels(labels_test_int.max() + 1) # stored required test labels
+if IMPORT_PATH_KERAS == "model_CNN_2D_2nd":
+    labels_test_int = np.where(labels_test_int==14, 15, labels_test_int)
+    labels_test_int = np.where(labels_test_int==13, 14, labels_test_int)
 
 # %% plot training history
 plt.figure()
@@ -152,9 +164,12 @@ for iIteration, confusion_matrix_list in enumerate(
 fig.delaxes(fig.axes[3])
 fig.delaxes(fig.axes[3])
 fig.delaxes(fig.axes[3])
-for iIteration in range(3):
+for iIteration in range(2):
     axes[iIteration].set_xticklabels(ticks)
     axes[iIteration].set_yticklabels(ticks)
+# test data can have different number of classes
+axes[2].set_xticklabels(ticks_test)
+axes[2].set_yticklabels(ticks_test)    
 
 plt.tight_layout()
 plt.show()
