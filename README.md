@@ -41,7 +41,15 @@ All scripts have been tested under the WinPython 3.8.3 distribution. Scripts tha
 
 ## 3. Instructions:
 
-### 3.1. Generate Training, Validation and Test Data for 2D convolution CNN case:
+### 3.1. Display pattern formation in the Gray-Scott model
+
+Run a single simulation for a specific set of input parameters [seed] [D_u] [f] [k]. For example, display a solution from the alpha class:
+
+   python gray_scott_2D.py 2 0.2 0.009 0.045
+
+Varying the seed will change the initial conditions randomly. In GStools.py the function get_dataset_parameter() returns a set of parameters for each class. 
+
+### 3.2. Generate Training, Validation and Test Data for 2D convolution CNN case:
 
 Execute the following commands to generate training, validation and test datasets. Depending on your CPU, you can adapt the constant NTHREADS (default 8) to speed parallel execution.
 
@@ -51,7 +59,7 @@ Execute the following commands to generate training, validation and test dataset
 
 Each script runs ~2 hrs on an Intel core i7 9th gen processor with 6 cores. All raw data files are also available for download from a OSF repository at https://osf.io/byrzm/
 
-### 3.2. Neural networks training
+### 3.3. Neural networks training
 
 #### Train neural network:
 
@@ -73,7 +81,7 @@ Display the saliency maps for selected patterns from training dataset.
 
     python CNN_Saliency.py
 
-### 3.3. Parameter space fine-scan
+### 3.4. Parameter space fine-scan
 
 #### Generate fine-scan of parameter space:
 
