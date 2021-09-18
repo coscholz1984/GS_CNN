@@ -45,7 +45,7 @@ All scripts have been tested under the WinPython 3.8.3 distribution. Scripts tha
 
 Run a single simulation for a specific set of input parameters [seed] [D_u] [f] [k]. For example, display a solution from the alpha class:
 
-   python gray_scott_2D.py 2 0.2 0.009 0.045
+    python gray_scott_2D.py 2 0.2 0.009 0.045
 
 Varying the seed will change the initial conditions randomly. In GStools.py the function get_dataset_parameter() returns a set of parameters for each class. 
 
