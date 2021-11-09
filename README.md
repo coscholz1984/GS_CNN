@@ -15,7 +15,7 @@ This project is aimed at improving this approach using convolutional neural netw
 
 For an in-depth explanation of the system and results, see the following publication:
 
-	C. Scholz and S. Scholz, "Exploring complex pattern formation with convolutional neural networks" (2021)
+	C. Scholz and S. Scholz, "Exploring complex pattern formation with convolutional neural networks", American Journal of Physics (2021)
 
 To cite this work, please cite the above publication, or, in case of specific code, please cite
 	
